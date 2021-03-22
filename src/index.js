@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function renderAllToys(){
 fetch('http://localhost:3000/toys')
   .then(response => response.json())
-  .then(toyObject => {toyObject.forEach(toy =>          {renderToyCard(toy)})
+  .then(toyObjects => {toyObjects.forEach(toyObject => {renderToyCard(toyObject)})
   })
 }
 
@@ -26,11 +26,11 @@ function renderToyCard(toyObject) {
   const toyCard = document.createElement('div')
   toyCard.dataset.id = toyObject.id
   toyCard.classList.add('card')
-  
+  let { name, image, likes} = toyObject
   toyCard.innerHTML = `
-      <h2>${toyObject.name}</h2>
-      <img src=${toyObject.image} class="toy-avatar" />
-      <p>${toyObject.likes} Likes </p>
+      <h2>${name}</h2>
+      <img src=${image} class="toy-avatar" />
+      <p>${likes} Likes </p>
       <button class="like-btn">Like <3</button>
       `
       
