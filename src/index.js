@@ -72,9 +72,9 @@ toyCollection.addEventListener('click', function(event) {
  const toyCard = event.target.closest('div')
   const likesPtag = event.target.previousElementSibling
   const likesNum = parseInt(likesPtag.textContent) + 1
-  likesPtag.textContent = `${likesNum} Likes`
+ 
 
-  fetch('http://localhost:3000/toys/${toyCard.dataset.id}', {
+  fetch(`http://localhost:3000/toys/${toyCard.dataset.id}`, {
     method: 'PATCH',
     headers: 
   {
@@ -86,7 +86,8 @@ toyCollection.addEventListener('click', function(event) {
 
   })
   .then(response => response.json())
-  .then(newToyObject => console.log(newToyObject))
+  .then(newToyObject =>  
+    {likesPtag.textContent = `${newToyObject.likes} Likes`})
 
 })
 
